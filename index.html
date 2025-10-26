@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>termynal.js example</title>
+        <meta charset="utf-8">
+        <!-- include the termynal stylesheet -->
+        <link rel="stylesheet" href="termynal.css">
+        <!-- some custom styles for the page -->
+        <link href="https://fonts.googleapis.com/css?family=Fira+Mono">
+        <style>
+            body {
+                padding: 0; margin: 0;
+                background: #1a1e24;
+                width: 100%;
+                min-height: 100vh;
+                display: -webkit-box; display: -ms-flexbox; display: flex;
+                -webkit-box-align: center; -ms-flex-align: center; align-items: center;
+                -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;
+                -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- the termynal container -->
+        <div id="termynal" data-termynal></div>
+
+        <!-- include and initialise termynal.js -->
+        <script src="termynal.js"></script>
+        <script>
+            // Configure your GitHub username - change to your GitHub username
+            const GITHUB_USERNAME = 'zeze-zeze';
+            
+            // Fetch GitHub statistics
+            async function getGitHubStats() {
+                try {
+                    // Get user info
+                    const userResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
+                    const userData = await userResponse.json();
+                    
+                    // Get repository list
+                    const reposResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
+                    const repos = await reposResponse.json();
+                    
+                    // Calculate statistics
+                    const stats = {
+                        publicRepos: userData.public_repos,
+                        totalStars: repos.reduce((sum, repo) => sum + repo.stargazers_count, 0),
+                        followers: userData.followers,
+                        following: userData.following,
+                        createdAt: new Date(userData.created_at).getFullYear()
+                    };
+                    
+                    return stats;
+                } catch (error) {
+                    console.error('Error fetching GitHub data:', error);
+                    return null;
+                }
+            }
+
+            // Format number with thousand separators
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            // Initialize page
+            async function init() {               
+                const baseLines = [
+                    { type: 'input', value: 'whoami' },
+                    { type: 'value', value: 'Zeze' },
+                    { type: 'value', value: '' },
+                ];
+
+                const stats = await getGitHubStats();
+                if (stats) {
+                    baseLines.push(
+                        { type: 'input', value: 'cat github-stats.txt' },
+                        { type: 'value', value: `Public Repositories: ${stats.publicRepos}` },
+                        { type: 'value', value: `Total Stars: ${formatNumber(stats.totalStars)}` },
+                        { type: 'value', value: `Followers: ${stats.followers}` },
+                        { type: 'value', value: `Following: ${stats.following}` },
+                        { type: 'value', value: `GitHub Member Since: ${stats.createdAt}` }
+                    );
+                }
+
+                baseLines.push(
+                    { type: 'value', value: '' },
+                    { type: 'input', value: 'cat social-media.txt' },
+                    { type: 'value', value: 'Want to know more about me?' },
+                    { type: 'value', value: '🔗 https://www.linkedin.com/in/zeze-lin/' },
+                    { type: 'value', value: '🔗 https://x.com/zeze7w' },
+                    { type: 'value', value: '' },
+                    { type: 'input', value: '_', cursor: '█' }
+                );
+
+                // Initialize Termynal
+                const termynal = new Termynal('#termynal', { 
+                    noInit: true,
+                    lineData: baseLines
+                });
+                
+                termynal.init();
+            }
+            
+            init();
+        </script>
+    </body>
+</html>
