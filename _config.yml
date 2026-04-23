@@ -1,0 +1,13 @@
+title: 資安混學家 - Zeze
+email: zezectf@gmail.com
+description: 所謂的混學就是在資安躺著研究的學問
+baseurl: ""
+url: "https://github.com/zeze-zeze/zeze-zeze.github.io"
+twitter_username: zeze7w
+github_username:  zeze-zeze
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
