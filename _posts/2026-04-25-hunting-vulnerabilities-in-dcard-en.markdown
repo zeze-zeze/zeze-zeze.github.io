@@ -4,6 +4,7 @@ title:  "Throwaway Bugs from Dcard's Bug Bounty"
 date:   2026-04-25
 lang: en
 translation_group: hunting-vulnerabilities-in-dcard
+published: false
 ---
 
 I kept seeing other bug bounty hunters report web issues on X (Twitter) and get paid, which made me a bit envious. Going after targets that are too hard is basically asking to fail, so I picked something from the [HITCON zeroday bug bounty program](https://zeroday.hitcon.org/bug-bounty), landed on Dcard, and found two throwaway issues.
