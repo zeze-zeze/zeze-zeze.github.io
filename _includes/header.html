@@ -1,6 +1,16 @@
 <header class="site-header" role="banner">
   <div class="wrapper">
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+    {%- if page.lang == 'en' and site.title_en -%}
+      {%- assign _site_title = site.title_en -%}
+    {%- else -%}
+      {%- assign _site_title = site.title -%}
+    {%- endif -%}
+    <a
+      class="site-title notranslate"
+      translate="no"
+      rel="author"
+      href="{{ "/" | relative_url }}"
+    >{{ _site_title | escape }}</a>
 
     <nav class="site-nav">
       <input type="checkbox" id="nav-trigger" class="nav-trigger" />

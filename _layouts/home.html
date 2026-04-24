@@ -7,6 +7,8 @@ layout: default
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">
       {%- for post in site.posts -%}
+      {%- if post.lang == 'en' and post.translation_group -%}
+      {%- else -%}
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ post.date | date: date_format }}</span>
@@ -15,10 +17,21 @@ layout: default
             {{ post.title | escape }}
           </a>
         </h3>
+        {%- if post.translation_group -%}
+          {%- assign en_translated = site.posts | where: "translation_group", post.translation_group | where: "lang", "en" | first -%}
+          {%- if en_translated -%}
+        <h3 class="post-translation" style="margin: 0.2rem 0 0; font-size: 1.05rem; font-weight: 400; line-height: 1.3;">
+          <a class="post-link" href="{{ en_translated.url | relative_url }}" style="color: #666;">
+            {{ en_translated.title | escape }} <span style="color: #999; font-size: 0.9em;" aria-hidden="true">(EN)</span>
+          </a>
+        </h3>
+          {%- endif -%}
+        {%- endif -%}
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}
       </li>
+      {%- endif -%}
       {%- endfor -%}
     </ul>
   {%- endif -%}

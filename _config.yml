@@ -1,6 +1,9 @@
 title: 資安混學家 - Zeze
+title_en: Cybersecurity Parasite - Zeze
+lang: zh-TW
 email: zezectf@gmail.com
 description: 所謂的混學就是在資安躺著研究的學問
+description_en: The so-called parasite is to study cybersecurity while lying down.
 baseurl: ""
 url: "https://github.com/zeze-zeze/zeze-zeze.github.io"
 twitter_username: zeze7w
