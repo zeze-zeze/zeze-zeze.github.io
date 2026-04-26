@@ -5,7 +5,7 @@ date:   2026-04-27
 translation_group: Reinforcement-Learning-From-Fantasy-to-Disillusionment
 ---
 
-作為一個成熟的混子，我們要學習各面向的知識，會的越多，能認的大哥就越多。
+作為一個成熟的混子，我們要嘗試學習各面向的知識，雖然不一定能學會。但要是學會了，會的越多，能認的大哥就越多。
 
 之前常常看到 youtube 上一些訓練 AI 玩遊戲的影片，我就一直想試試。剛好之前出題目拿 [tuanngokien/Crazy-Arcade](https://github.com/tuanngokien/Crazy-Arcade) 來改，所以對這單機遊戲算是熟悉。
 
