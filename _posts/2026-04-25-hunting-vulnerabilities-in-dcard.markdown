@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "在 Dcard 的 Bug Bounty 找到的廢洞"
-date:   2026-04-25
+title: "在 Dcard 的 Bug Bounty 找到的廢洞"
+date: 2026-04-25
 translation_group: hunting-vulnerabilities-in-dcard
 ---
 
@@ -10,7 +10,9 @@ translation_group: hunting-vulnerabilities-in-dcard
 在 X (twitter) 上一直看到其他 bug bounty hunter 回報 web 漏洞拿獎金很羨慕，不過混子挑戰太難的目標無疑是飛蛾撲火，所以從 [hitcon zeroday 的 bounty program](https://zeroday.hitcon.org/bug-bounty) 隨便找了一個目標看看，然後就選中 Dcard，最後找到兩個廢洞。
 
 ### Insufficient Authorization in Account Recovery Flow
+
 第一個漏洞是在刪除帳號後會有 30 天保留時間，如果 30 天都沒有嘗試登入就會刪除。攻擊者可以在不知道這個帳號的密碼的情況下，重啟這個帳號。
+
 1. 用信箱、密碼建立使用者
 2. 刪除使用者
 3. 用錯誤的密碼嘗試登入被刪除的使用者，跳出是否重啟帳號，按是成功重啟
@@ -38,8 +40,8 @@ translation_group: hunting-vulnerabilities-in-dcard
 
 ![image](/assets/hunting-vulnerabilities-in-dcard/hacker_board.png)
 
-
 ### 關於獎金
+
 其實我還找了第三個漏洞，個人認為危害較大，並且我也提出了可實際利用的攻擊情境，不過 Dcard Security Team 說這是 feature，當作 known issue 處理，但未來會針對這部分進行調整，所以之後有機會再分享。
 
 雖然找到有兩個廢洞跟一個 feature，Dcard Security Team 說漏洞危害較低，不符合獎金資格。不過因為找了三個，所以被告知可能可以三個合併算獎金。

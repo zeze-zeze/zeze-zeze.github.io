@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "A Throwaway Bug in Process Explorer"
-date:   2026-04-26
+title: "A Throwaway Bug in Process Explorer"
+date: 2026-04-26
 lang: en
 translation_group: process-explorer-long-name-minidump
 ---
@@ -32,17 +32,18 @@ Same root cause, different path: if you right-click and choose `Create Minidump`
 I did not start the test process with a double-click; I used the low-level NT API [`NtCreateUserProcess`](https://gist.github.com/zeze-zeze/b5b2e12944c3e6003db4a4c473d3970c), or process creation would fail.
 
 ### MSRC
+
 They said it is fixed, but there was no CVE, and a bug this low-impact will not get a bounty, obviously.
 
 ```
 Hello Zeze,
- 
+
 Thank you for your submission - we have marked this as a Low Severity vulnerability and our EG team has fixed it.
- 
+
 The current rationale is:
- 
+
 "This is a local DoS affecting current versions of Process Explorer. Finder demonstrates the ability to crash Process Explorer when attempting to create a minidump of a process with a long name (255 characters)."
- 
+
 Thank you,
 MSRC
 ```

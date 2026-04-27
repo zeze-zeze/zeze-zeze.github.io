@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Throwaway Bugs from Dcard's Bug Bounty"
-date:   2026-04-25
+title: "Throwaway Bugs from Dcard's Bug Bounty"
+date: 2026-04-25
 lang: en
 translation_group: hunting-vulnerabilities-in-dcard
 published: false
@@ -10,10 +10,12 @@ published: false
 I kept seeing other bug bounty hunters report web issues on X (Twitter) and get paid, which made me a bit envious. Going after targets that are too hard is basically asking to fail, so I picked something from the [HITCON zeroday bug bounty program](https://zeroday.hitcon.org/bug-bounty), landed on Dcard, and found two throwaway issues.
 
 ### Insufficient Authorization in Account Recovery Flow
+
 The first issue: after you delete an account, there is a 30-day retention period; if there is no login attempt for 30 days, the account is removed. An attacker can restart that account without knowing the password.
+
 1. Create a user with email and password
 2. Delete the user
-3. Try to log in to the deleted account with the *wrong* password, choose to restart the account when prompted, and the restart succeeds
+3. Try to log in to the deleted account with the _wrong_ password, choose to restart the account when prompted, and the restart succeeds
 
 After restart, there is still no password, so the attacker still cannot do much. A bug that can restart someone else’s account looks useless—and in practice I still do not know what it is good for.
 
@@ -38,10 +40,10 @@ The hall of fame list was updated; sharing the page with the real pros is more t
 
 ![image](/assets/hunting-vulnerabilities-in-dcard/hacker_board.png)
 
-
 ### On the reward
+
 I actually found a third issue that I think had higher impact, and I provided a practical exploit scenario, but the team treated it as a feature, a known issue to be improved later, so maybe another time.
 
-Even with two throwaways and one “feature” finding, the team said the impact was low and not eligible for a bounty. Because I had three, they said they *might* combine them for a single payout.
+Even with two throwaways and one “feature” finding, the team said the impact was low and not eligible for a bounty. Because I had three, they said they _might_ combine them for a single payout.
 
 If money actually shows up, I will come back to update the story.
