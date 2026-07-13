@@ -1,15 +1,21 @@
 ---
 layout: post
 title: "揭開 Mifare Classic 1k 卡的真面目"
-date: 2027-04-30
+date: 3027-04-30
 translation_group: hacking-mifare-classic-1k-card
 ---
 
 作為一個成熟的混子，分辨真大哥是第一要務。不能因為別人認為他是大哥，就盲從相信他就是大哥。
 
-## NFC Hacking
+## 研究動機
 
-下面把我平時整理、測試和教學會用到的 NFC / Mifare 相關資源與操作紀錄整理在這裡，包含攻擊原理、實作指令（以 proxmark3 為主）、重要論文與學習路徑。
+2025 在 HITCON 活動組本來到六月都在滑水，因為入坑 PCB Badge 燒太多時間、Re:CTF 去年做過所以想做做其他的、要炒前年釣魚牆的冷飯又有點不願意。
+
+剛好六月中悠遊卡被高中生破解的新聞，例如[全台首例！悠遊卡編碼 遭高中生自學破解](https://www.youtube.com/watch?v=wpsiPb0RLaI)，網路上各種新聞和專家都在說這很簡單，讓還不會的我有點羞愧。不過想說應該不會只有我不會，所以才決定蹭熱度開 NFC Hacking 這個活動科普相關知識，也還好沒因為時間太晚而被拒絕加入活動。
+
+不過學了才知道要做到竄改悠遊卡確實挺容易的，就是把工具買一買，破解程式裝一裝，照著教學做就可以改卡裡的值了。但其實破解 Mifare Classic 1K 卡是循序漸進的，前前後後好幾篇論文在嘗試破解，最後終於找到一個穩定且快速的做法能把卡片的 key 破解完。
+
+而破解的原理還是跟密碼學脫離不了關係，出現密碼學就代表會出現很多數學，要完全理解還是得花不少時間。
 
 ### NFC 安全相關閱讀
 
@@ -233,4 +239,4 @@ hf mf csetuid -u <UID> --atqa <ATQA> --sak <SAK>
 - Hardnested / ciphertext-only 攻擊概念
 - NXP 的新卡（DESFire）以及法規與實務上對複製、竄改有價證券的懲罰與管理（法律面簡介）
 
-<video src="/assets/hacking-mifare-classic-1k-card/hitcon-demo-nfc-hacking.mp4" style="max-width: 100%; width: 560px; height: auto; display: block;" controls preload="metadata" playsinline></video>
+<video src="https://www.youtube.com/watch?v=LWHVHA7Ml4k" style="max-width: 100%; width: 560px; height: auto; display: block;" controls preload="metadata" playsinline></video>
