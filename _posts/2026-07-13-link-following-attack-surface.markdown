@@ -67,8 +67,8 @@ CreateNativeSymlink.exe "\RPC CONTROL\trick.txt" "\??\c:\other_file"
 
 ### 擴大攻擊情境 by Oplock
 
-有時不知道程式會操作哪個特定檔案，只知道是某個目錄中的檔案 e.g. `C:\target_dir` 。
 通常程式會先確認有哪些檔案在 `C:\target_dir` 才去操作檔案，如果直接像是「任意刪除檔案」中設定 junction 指向 `\RPC CONTROL\`，會因為 `\RPC CONTROL\` 是一個 Object Manager namespace 而無法用一般列舉目錄的 API 直接列舉檔案，列舉失敗也許程式就不刪除了，所以無法提前設定 junction 和 symbolic link。
+
 Oplock 可以解決這個問題，既滿足讓程式列舉目錄時可以成功，又能讓程式在列舉之後刪除檔案時，刪除到攻擊者指定的檔案。
 
 Oplock：當檔案被 oplock 後，其他要存取同個檔案的操作會被卡住，直到 oplock 被釋放。Windows NT3.1 開始支援。
