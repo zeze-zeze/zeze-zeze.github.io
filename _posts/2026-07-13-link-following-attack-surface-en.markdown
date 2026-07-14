@@ -61,9 +61,11 @@ If you know that a program will delete a file inside a directory, and both that 
 
 ### Expanding the Scenario with Oplocks
 
-Sometimes you do not know which exact file the program will touch. You only know it will operate on some file inside a directory such as `C:\target_dir`. In practice, the program will usually enumerate what is inside `C:\target_dir` first and only then operate on a specific file, so you cannot prepare the junction and symbolic link early enough.
+Sometimes, we do not know which specific file a program will operate on; we only know that the file is located in a particular directory, such as `C:\target_dir`.
+A program will typically enumerate the files in `C:\target_dir` before operating on one of them. If, as in an “Arbitrary File Delete” attack, we preconfigure a junction to point directly to `\RPC Control\`, the enumeration will fail because `\RPC Control\` is an Object Manager namespace and cannot be enumerated using ordinary filesystem directory-enumeration APIs. If enumeration fails, the program may simply abort the deletion. Therefore, the junction and symbolic link cannot be set up in advance.
+An oplock can solve this problem: it allows the program to enumerate the directory successfully, while also making it possible, after enumeration, to cause the subsequent deletion operation to target a file chosen by the attacker.
 
-An oplock helps here: once a file is oplocked, other operations that try to access the same file will block until the oplock is released. Oplocks have existed since Windows NT 3.1.
+Once a file is oplocked, other operations that try to access the same file will block until the oplock is released. Oplocks have existed since Windows NT 3.1.
 
 How to create one: use [SetOpLock from symboliclink-testing-tools](https://github.com/googleprojectzero/symboliclink-testing-tools/tree/main/SetOpLock):
 
