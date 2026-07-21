@@ -94,7 +94,7 @@ SetOplock.exe C:\target_file rwdx
 
 用 Windows API [DeleteFile](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-deletefile) 刪除 `C:\Config.Msi::$INDEX_ALLOCATION` 來刪除目錄。
 
-Note: 這招在 windows 11 24H2 最新版用不了 (刪除 $INDEX_ALLOCATION 會失敗)，但 windows 11 23H2 最新版可以用。
+Note: 這招在 windows 11 24H2 以上用不了 (刪除 $INDEX_ALLOCATION 會失敗)，但 windows 11 23H2 最新版可以用。
 
 用 [ZDI 的 FolderContentsDeleteToFolderDelete](https://github.com/thezdi/PoC/tree/main/FilesystemEoPs/FolderContentsDeleteToFolderDelete) 實作
 
