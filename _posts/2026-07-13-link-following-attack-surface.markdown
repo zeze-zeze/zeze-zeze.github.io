@@ -89,15 +89,12 @@ SetOplock.exe C:\target_file rwdx
 <br/>
 
 ## Exploit
+
 ### 從任意刪除檔案到任意刪除目錄
 
-可以用以下刪除檔案的 API 刪除 `C:\Config.Msi::$INDEX_ALLOCATION` 來刪除目錄，然後搭配上面的任意刪除目錄到任意寫檔。
+用 Windows API [DeleteFile](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-deletefile) 刪除 `C:\Config.Msi::$INDEX_ALLOCATION` 來刪除目錄。
 
-- 直接用 `del` 會失敗
-- windows API [DeleteFile](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-deletefile)
-- C++ [std::filesystem::remove](https://en.cppreference.com/w/cpp/filesystem/remove)
-
-Note: 這招在 windows 11 24H2 最新版用不了 (刪除 $INDEX_ALLOCATION 會失敗)，但 windows 11 23H2 最新版可以用
+Note: 這招在 windows 11 24H2 最新版用不了 (刪除 $INDEX_ALLOCATION 會失敗)，但 windows 11 23H2 最新版可以用。
 
 用 [ZDI 的 FolderContentsDeleteToFolderDelete](https://github.com/thezdi/PoC/tree/main/FilesystemEoPs/FolderContentsDeleteToFolderDelete) 實作
 
